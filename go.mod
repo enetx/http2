@@ -3,7 +3,7 @@ module gitlab.com/x0xO/http2
 go 1.21
 
 require (
-	gitlab.com/x0xO/http v1.0.1
+	gitlab.com/x0xO/http v1.0.2
 	golang.org/x/net v0.20.0
 )
 
