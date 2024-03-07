@@ -1,6 +1,6 @@
-gitlab.com/x0xO/http v1.0.3 h1:3hsfCnVUesNB/fHQtzPh/UD12u8aIf8Y0dnX9NI/06A=
-gitlab.com/x0xO/http v1.0.3/go.mod h1:m4q2F1bsyOu4lC875dRenBQyPKHzOIJ22+GgHImZ0Uk=
-golang.org/x/net v0.20.0 h1:aCL9BSgETF1k+blQaYUBx9hJ9LOGP3gAVemcZlf1Kpo=
-golang.org/x/net v0.20.0/go.mod h1:z8BVo6PvndSri0LbOE3hAn0apkU+1YvI6E70E9jsnvY=
+gitlab.com/x0xO/http v1.0.4 h1:iigMzeEwDY+zbUB5uuWlA0i8alL72KgMmekxE0KxZOY=
+gitlab.com/x0xO/http v1.0.4/go.mod h1:U6w0lIr0qbImhP9h/bT1XbtImt4B8QxlfnL3fkn75Qk=
+golang.org/x/net v0.22.0 h1:9sGLhx7iRIHEiX0oAJ3MRZMUCElJgy7Br1nO+AMN3Tc=
+golang.org/x/net v0.22.0/go.mod h1:JKghWKKOSdJwpW2GEx0Ja7fmaKnMsbu+MWVZTokSYmg=
 golang.org/x/text v0.14.0 h1:ScX5w1eTa3QqT8oi6+ziP7dTV1S2+ALU0bI+0zXKWiQ=
 golang.org/x/text v0.14.0/go.mod h1:18ZOQIKpY8NJVqYksKHtTdi31H5itFRjB5/qKTNYzSU=
