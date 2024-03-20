@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	"gitlab.com/x0xO/http2"
+	"github.com/enetx/http2"
 )
 
 // Tests if connection settings are written correctly

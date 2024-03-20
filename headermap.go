@@ -7,7 +7,7 @@ package http2
 import (
 	"sync"
 
-	"gitlab.com/x0xO/http"
+	"github.com/enetx/http"
 )
 
 var (

@@ -12,7 +12,7 @@ import (
 	"errors"
 	"sync"
 
-	"gitlab.com/x0xO/http"
+	"github.com/enetx/http"
 )
 
 // ClientConnPool manages a pool of HTTP/2 client connections.

@@ -1,5 +1,5 @@
-gitlab.com/x0xO/http v1.0.5 h1:7szXBUile/os0Rm9LGMOPGHiri0OCBCvNxFKpAUQf4Y=
-gitlab.com/x0xO/http v1.0.5/go.mod h1:U6w0lIr0qbImhP9h/bT1XbtImt4B8QxlfnL3fkn75Qk=
+github.com/enetx/http v1.0.6 h1:uUO3RJr9gKJUxb8ptmrsfHeCb9VQtoFMGp353bSEXVE=
+github.com/enetx/http v1.0.6/go.mod h1:h3l+JO0h59RssJw3vvbe7BB6K7I5qbwc2IAPDtFnXYo=
 golang.org/x/net v0.22.0 h1:9sGLhx7iRIHEiX0oAJ3MRZMUCElJgy7Br1nO+AMN3Tc=
 golang.org/x/net v0.22.0/go.mod h1:JKghWKKOSdJwpW2GEx0Ja7fmaKnMsbu+MWVZTokSYmg=
 golang.org/x/text v0.14.0 h1:ScX5w1eTa3QqT8oi6+ziP7dTV1S2+ALU0bI+0zXKWiQ=

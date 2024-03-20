@@ -10,7 +10,8 @@ import (
 	"log"
 	"net/url"
 
-	"gitlab.com/x0xO/http"
+	"github.com/enetx/http"
+
 	"golang.org/x/net/http/httpguts"
 	"golang.org/x/net/http2/hpack"
 )
@@ -75,6 +76,7 @@ type writeSettings []Setting
 func (s writeSettings) staysWithinBuffer(max int) bool {
 	const settingSize = 6 // uint16 + uint32
 	return frameHeaderLen+settingSize*len(s) <= max
+
 }
 
 func (s writeSettings) writeFrame(ctx writeContext) error {
