@@ -26,7 +26,9 @@ import (
 	"golang.org/x/net/http/httpguts"
 )
 
-var http2VerboseLogs bool
+var (
+	http2VerboseLogs bool
+)
 
 func init() {
 	e := os.Getenv("GODEBUG")
