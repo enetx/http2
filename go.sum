@@ -1,6 +1,6 @@
-github.com/enetx/http v1.0.8 h1:aNocWnrXiA0Ae0tLlINOE70onCrjy3gR/b1Hh/NgUA8=
-github.com/enetx/http v1.0.8/go.mod h1:IrmupVjBNMoM5UT9EEh9/VtrUjLS/ENPlZonLppO7JI=
-golang.org/x/net v0.23.0 h1:7EYJ93RZ9vYSZAIb2x3lnuvqO5zneoD6IvWjuhfxjTs=
-golang.org/x/net v0.23.0/go.mod h1:JKghWKKOSdJwpW2GEx0Ja7fmaKnMsbu+MWVZTokSYmg=
-golang.org/x/text v0.14.0 h1:ScX5w1eTa3QqT8oi6+ziP7dTV1S2+ALU0bI+0zXKWiQ=
-golang.org/x/text v0.14.0/go.mod h1:18ZOQIKpY8NJVqYksKHtTdi31H5itFRjB5/qKTNYzSU=
+github.com/enetx/http v1.0.9 h1:ZTmRKXEc7hE91/FHM1x3FxkW55p8txmgQrAYy8cn/fc=
+github.com/enetx/http v1.0.9/go.mod h1:9F6q1SA2T0kOPTkabcjJe5RNGbge8hD5btEFfKuKTGw=
+golang.org/x/net v0.25.0 h1:d/OCCoBEUq33pjydKrGQhw7IlUPI2Oylr+8qLx49kac=
+golang.org/x/net v0.25.0/go.mod h1:JkAGAh7GEvH74S6FOH42FLoXpXbE/aqXSrIQjXgsiwM=
+golang.org/x/text v0.15.0 h1:h1V/4gjBv8v9cjcR6+AR5+/cIYK5N/WAgiv4xlsEtAk=
+golang.org/x/text v0.15.0/go.mod h1:18ZOQIKpY8NJVqYksKHtTdi31H5itFRjB5/qKTNYzSU=
