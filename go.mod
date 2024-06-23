@@ -3,7 +3,7 @@ module github.com/enetx/http2
 go 1.22
 
 require (
-	github.com/enetx/http v1.0.10
+	github.com/enetx/http v1.0.11
 	golang.org/x/net v0.26.0
 )
 
