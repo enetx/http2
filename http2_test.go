@@ -11,11 +11,11 @@ import (
 // Tests if connection settings are written correctly
 func TestConnectionSettings(t *testing.T) {
 	settings := []http2.Setting{
-		{ID: http2.SettingHeaderTableSize, Val: 65536},
-		{ID: http2.SettingMaxConcurrentStreams, Val: 1000},
-		{ID: http2.SettingInitialWindowSize, Val: 6291456},
-		{ID: http2.SettingMaxFrameSize, Val: 16384},
-		{ID: http2.SettingMaxHeaderListSize, Val: 262144},
+		{ID: http2.SettingHeaderTableSize, Val: 65531},
+		{ID: http2.SettingMaxConcurrentStreams, Val: 1001},
+		{ID: http2.SettingInitialWindowSize, Val: 6291457},
+		{ID: http2.SettingMaxFrameSize, Val: 16385},
+		{ID: http2.SettingMaxHeaderListSize, Val: 262145},
 	}
 
 	buf := new(bytes.Buffer)
@@ -42,15 +42,15 @@ func TestConnectionSettings(t *testing.T) {
 		var err error
 		switch s.ID {
 		case http2.SettingHeaderTableSize:
-			err = compareSettings(s.ID, s.Val, 65536)
+			err = compareSettings(s.ID, s.Val, 65531)
 		case http2.SettingMaxConcurrentStreams:
-			err = compareSettings(s.ID, s.Val, 1000)
+			err = compareSettings(s.ID, s.Val, 1001)
 		case http2.SettingInitialWindowSize:
-			err = compareSettings(s.ID, s.Val, 6291456)
+			err = compareSettings(s.ID, s.Val, 6291457)
 		case http2.SettingMaxFrameSize:
-			err = compareSettings(s.ID, s.Val, 16384)
+			err = compareSettings(s.ID, s.Val, 16385)
 		case http2.SettingMaxHeaderListSize:
-			err = compareSettings(s.ID, s.Val, 262144)
+			err = compareSettings(s.ID, s.Val, 262145)
 		}
 
 		if err != nil {
