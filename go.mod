@@ -1,10 +1,10 @@
 module github.com/enetx/http2
 
-go 1.23
+go 1.24
 
 require (
 	github.com/enetx/http v1.0.12
-	golang.org/x/net v0.34.0
+	golang.org/x/net v0.37.0
 )
 
-require golang.org/x/text v0.21.0 // indirect
+require golang.org/x/text v0.23.0 // indirect

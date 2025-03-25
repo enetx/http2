@@ -14,6 +14,7 @@ import (
 
 	"golang.org/x/net/http/httpguts"
 	"golang.org/x/net/http2/hpack"
+	"github.com/enetx/http2/httpcommon"
 )
 
 // writeFramer is implemented by any type that is used to write frames.
@@ -352,7 +353,7 @@ func encodeHeaders(enc *hpack.Encoder, h http.Header, keys []string) {
 	}
 	for _, k := range keys {
 		vv := h[k]
-		k, ascii := lowerHeader(k)
+		k, ascii := httpcommon.LowerHeader(k)
 		if !ascii {
 			// Skip writing invalid headers. Per RFC 7540, Section 8.1.2, header
 			// field names have to be ASCII characters (just as in HTTP/1.x).

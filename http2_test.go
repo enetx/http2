@@ -23,7 +23,7 @@ func TestConnectionSettings(t *testing.T) {
 
 	err := fr.WriteSettings(settings...)
 	if err != nil {
-		t.Fatalf(err.Error())
+		t.Fatal(err.Error())
 	}
 
 	f, err := fr.ReadFrame()
@@ -37,7 +37,7 @@ func TestConnectionSettings(t *testing.T) {
 		t.Fatalf("Expected %d settings, got %d", len(settings), n)
 	}
 
-	for i := 0; i < n; i++ {
+    for i := range n {
 		s := sf.Setting(i)
 		var err error
 		switch s.ID {
