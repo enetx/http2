@@ -602,7 +602,7 @@ func (t *Transport) RoundTrip(req *http.Request) (*http.Response, error) {
 
 // authorityAddr returns a given authority (a host/IP, or host:port / ip:port)
 // and returns a host:port. The port 443 is added if needed.
-func authorityAddr(scheme, authority string) (addr string) {
+func authorityAddr(scheme string, authority string) (addr string) {
 	host, port, err := net.SplitHostPort(authority)
 	if err != nil { // authority didn't have a port
 		host = authority
@@ -742,10 +742,7 @@ func shouldRetryRequest(req *http.Request, err error) (*http.Request, error) {
 		return req, nil
 	}
 
-	return nil, fmt.Errorf(
-		"http2: Transport: cannot retry err [%v] after Request.Body was written; define Request.GetBody to avoid this error",
-		err,
-	)
+	return nil, fmt.Errorf("http2: Transport: cannot retry err [%v] after Request.Body was written; define Request.GetBody to avoid this error", err)
 }
 
 func canRetryError(err error) bool {
@@ -1000,9 +997,7 @@ func (cc *ClientConn) setGoAway(f *GoAwayFrame) {
 			// Don't retry the first stream on a connection if we get a non-NO error.
 			// If the server is sending an error on a new connection,
 			// retrying the request on a new one probably isn't going to work.
-			cs.abortStreamLocked(
-				fmt.Errorf("http2: Transport received GOAWAY from server ErrCode:%v", cc.goAway.ErrCode),
-			)
+			cs.abortStreamLocked(fmt.Errorf("http2: Transport received GOAWAY from server ErrCode:%v", cc.goAway.ErrCode))
 		} else {
 			// Aborting the stream with errClentConnGotGoAway indicates that
 			// the request should be retried on a new connection.
@@ -1665,12 +1660,7 @@ func (cs *clientStream) encodeAndWriteHeaders(req *http.Request) error {
 	return err
 }
 
-func encodeRequestHeaders(
-	req *http.Request,
-	addGzipHeader bool,
-	peerMaxHeaderListSize uint64,
-	headerf func(name, value string),
-) (httpcommon.EncodeHeadersResult, error) {
+func encodeRequestHeaders(req *http.Request, addGzipHeader bool, peerMaxHeaderListSize uint64, headerf func(name, value string)) (httpcommon.EncodeHeadersResult, error) {
 	return httpcommon.EncodeHeaders(req.Context(), httpcommon.EncodeHeadersParam{
 		Request: httpcommon.Request{
 			Header:              httpcommon.Header(req.Header),
@@ -2061,6 +2051,7 @@ func (cs *clientStream) awaitFlowControl(maxBytes int) (taken int32, err error) 
 		if a := cs.flow.available(); a > 0 {
 			take := a
 			if int(take) > maxBytes {
+
 				take = int32(maxBytes) // can't truncate int; take is int32
 			}
 			if take > int32(cc.maxFrameSize) {
@@ -2149,12 +2140,7 @@ func (cc *ClientConn) forgetStreamID(id uint32) {
 	closeOnIdle := cc.singleUse || cc.doNotReuse || cc.t.disableKeepAlives() || cc.goAway != nil
 	if closeOnIdle && cc.streamsReserved == 0 && len(cc.streams) == 0 {
 		if VerboseLogs {
-			cc.vlogf(
-				"http2: Transport closing idle conn %p (forSingleUse=%v, maxStream=%v)",
-				cc,
-				cc.singleUse,
-				cc.nextStreamID-2,
-			)
+			cc.vlogf("http2: Transport closing idle conn %p (forSingleUse=%v, maxStream=%v)", cc, cc.singleUse, cc.nextStreamID-2)
 		}
 		cc.closed = true
 		defer cc.closeConn()
@@ -2357,12 +2343,7 @@ func (rl *clientConnReadLoop) run() error {
 		}
 		if err != nil {
 			if VerboseLogs {
-				cc.vlogf(
-					"http2: Transport conn %p received error from processing frame %v: %v",
-					cc,
-					summarizeFrame(f),
-					err,
-				)
+				cc.vlogf("http2: Transport conn %p received error from processing frame %v: %v", cc, summarizeFrame(f), err)
 			}
 			return err
 		}

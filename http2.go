@@ -85,7 +85,9 @@ const (
 	defaultMaxReadFrameSize = 1 << 20
 )
 
-var clientPreface = []byte(ClientPreface)
+var (
+	clientPreface = []byte(ClientPreface)
+)
 
 type streamState int
 
@@ -320,12 +322,7 @@ func (w *bufferedWriterTimeoutWriter) Write(p []byte) (n int, err error) {
 // writeWithByteTimeout writes to conn.
 // If more than timeout passes without any bytes being written to the connection,
 // the write fails.
-func writeWithByteTimeout(
-	group synctestGroupInterface,
-	conn net.Conn,
-	timeout time.Duration,
-	p []byte,
-) (n int, err error) {
+func writeWithByteTimeout(group synctestGroupInterface, conn net.Conn, timeout time.Duration, p []byte) (n int, err error) {
 	if timeout <= 0 {
 		return conn.Write(p)
 	}
