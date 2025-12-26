@@ -190,6 +190,7 @@ type Transport struct {
 	// Settings should not include InitialWindowSize or HeaderTableSize, set that in Transport
 	Settings []Setting
 
+	StreamID       uint32
 	ConnectionFlow uint32
 	PriorityParam  PriorityParam
 	PriorityFrames []PriorityFrame
@@ -557,7 +558,7 @@ func (t *Transport) RoundTrip(req *http.Request) (*http.Response, error) {
 
 // authorityAddr returns a given authority (a host/IP, or host:port / ip:port)
 // and returns a host:port. The port 443 is added if needed.
-func authorityAddr(scheme string, authority string) (addr string) {
+func authorityAddr(scheme, authority string) (addr string) {
 	host, port, err := net.SplitHostPort(authority)
 	if err != nil { // authority didn't have a port
 		host = authority
@@ -805,6 +806,11 @@ func (t *Transport) newClientConn(c net.Conn, singleUse bool) (*ClientConn, erro
 		reqHeaderMu:                 make(chan struct{}, 1),
 		lastActive:                  time.Now(),
 	}
+
+	if t.StreamID != 0 {
+		cc.nextStreamID = t.StreamID
+	}
+
 	if t.transportTestHooks != nil {
 		t.transportTestHooks.newclientconn(cc)
 		c = cc.tconn
@@ -1052,7 +1058,7 @@ func (cc *ClientConn) idleState() clientConnIdleState {
 
 func (cc *ClientConn) idleStateLocked() (st clientConnIdleState) {
 	if cc.singleUse && cc.nextStreamID > 1 {
-		return
+		return st
 	}
 	var maxConcurrentOkay bool
 	if cc.strictMaxConcurrentStreams {
@@ -1087,7 +1093,7 @@ func (cc *ClientConn) idleStateLocked() (st clientConnIdleState) {
 		st.canTakeNewRequest = true
 	}
 
-	return
+	return st
 }
 
 // currentRequestCountLocked reports the number of concurrency slots currently in use,
@@ -2001,7 +2007,6 @@ func (cs *clientStream) awaitFlowControl(maxBytes int) (taken int32, err error) 
 		if a := cs.flow.available(); a > 0 {
 			take := a
 			if int(take) > maxBytes {
-
 				take = int32(maxBytes) // can't truncate int; take is int32
 			}
 			if take > int32(cc.maxFrameSize) {
@@ -2562,7 +2567,7 @@ func (b transportResponseBody) Read(p []byte) (n int, err error) {
 	}
 	if n == 0 {
 		// No flow control tokens to send back.
-		return
+		return n, err
 	}
 
 	cc.mu.Lock()
@@ -2584,7 +2589,7 @@ func (b transportResponseBody) Read(p []byte) (n int, err error) {
 		}
 		cc.bw.Flush()
 	}
-	return
+	return n, err
 }
 
 var errClosedResponseBody = errors.New("http2: response body closed")
